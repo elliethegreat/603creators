@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact · 603 Creator Collective</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="603 Creator Collective supports New Hampshire creators driving local news and conversation, with a progressive, pro-democracy lens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Serif+Display:ital@1&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="logo" href="index.html" aria-label="603 Creator Collective, home"><img src="logo-mark.png" alt="" width="240" height="240"><span class="logo-text">603 Creator Collective</span></a><nav class="nav" aria-label="Main"><a href="about.html">About</a><a href="creators.html">For Creators</a><a href="network.html">Our Network</a><a href="contact.html" aria-current="page">Contact</a><a class="btn btn-primary" href="creators.html#apply">Apply</a></nav></div></header>
+<main id="main">
+<section class="band lake"><div class="inner"><div class="stack" style="max-width: 900px">
+<span class="eyebrow">Contact</span>
+<h1>Let's <span class="em">talk.</span></h1>
+<p class="lead">We partner with local leaders, elected officials, and organizations who want to share their expertise, support civic education, and build community. Get in touch!</p>
+
+</div></div></section>
+
+<section class="band"><div class="inner"><div class="split">
+<div class="stack"><span class="eyebrow">Contact form</span><h2>Send us a message.</h2></div>
+<form class="form card flat" data-gform="https://docs.google.com/forms/d/e/1FAIpQLSe23nttilXLbDlJhtJzKKT8Ek1Fc8yXlKv9gCPgCnXrwJM52Q/formResponse" data-success="Thanks for reaching out! We've received your message and will get back to you soon." data-error="Your message didn't send. Please check your connection and try again." novalidate>
+<div class="row">
+<div class="field"><label for="ct-name">Your name</label><input id="ct-name" name="entry.1474774171" autocomplete="name" required></div>
+<div class="field"><label for="ct-email">Email</label><input id="ct-email" name="entry.384264651" type="email" autocomplete="email" required></div>
+</div>
+<div class="field"><label for="ct-topic">Topic</label>
+<select id="ct-topic" name="entry.1905439633"><option>General question</option><option>Applying as a creator</option><option>Partnership</option><option>Volunteering</option><option>Press</option></select></div>
+<div class="field"><label for="ct-msg">Message</label><textarea id="ct-msg" name="entry.910250393" required></textarea></div>
+<div class="btn-row"><button class="btn btn-primary" type="submit">Send message</button></div>
+<div class="form-status" role="status" tabindex="-1" hidden></div>
+</form>
+</div></div></section>
+</main>
+<footer class="site-footer"><div class="inner">
+<div class="footer-top">
+<a class="logo" href="index.html" aria-label="603 Creator Collective, home"><img src="logo-mark.png" alt="" width="240" height="240"><span class="logo-text">603 Creator Collective</span></a>
+<nav class="footer-links" aria-label="Footer"><a href="index.html">Home</a><a href="about.html">About</a><a href="creators.html">For Creators</a><a href="network.html">Our Network</a><a href="contact.html">Contact</a></nav>
+</div>
+<div class="footer-bottom">
+<span>Local voices, local impact.</span>
+</div>
+</div></footer>
+<script>
+function showStatus(form, msg, ok) {
+  var status = form.querySelector('.form-status');
+  status.hidden = false;
+  status.textContent = msg;
+  status.style.background = ok ? '' : '#FFF6C7';
+  status.focus();
+}
+document.querySelectorAll('form[data-demo]').forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    showStatus(form, form.getAttribute('data-demo'), true);
+  });
+});
+document.querySelectorAll('form[data-gform]').forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var button = form.querySelector('button[type="submit"]');
+    var label = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    fetch(form.getAttribute('data-gform'), { method: 'POST', mode: 'no-cors', body: new FormData(form) })
+      .then(function () {
+        form.reset();
+        showStatus(form, form.getAttribute('data-success'), true);
+      })
+      .catch(function () {
+        showStatus(form, form.getAttribute('data-error') || "Your application didn't send. Please check your connection and try again.", false);
+      })
+      .finally(function () {
+        button.disabled = false;
+        button.textContent = label;
+      });
+  });
+});
+</script>
+</body>
+</html>
